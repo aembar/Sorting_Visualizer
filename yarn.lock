@@ -7305,6 +7305,11 @@
   dependencies:
     "sourcemap-codec" "^1.4.4"
 
+"main@^1000.0.1":
+  "integrity" "sha512-zhB0yIsogMo0xGJEusCzS4I13ejvhEJ1MOWi1OR4n77HyhlqgvNNwhOOt5moSdTYd+Vi8B4wPE/MDmhquNHxrA=="
+  "resolved" "https://registry.npmjs.org/main/-/main-1000.0.1.tgz"
+  "version" "1000.0.1"
+
 "make-dir@^2.0.0":
   "integrity" "sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA=="
   "resolved" "https://registry.yarnpkg.com/make-dir/-/make-dir-2.1.0.tgz"
