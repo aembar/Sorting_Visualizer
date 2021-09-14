@@ -1,0 +1,25 @@
+:root {
+    --primary: #3acbf7;
+}
+
+.btn2 {
+    padding: 8px 20px;
+    border-radius: 4px;
+    outline: none;
+    pointer-events:none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn--primary {
+    background-color: var(--primary);
+}
+
+.disabled {
+    pointer-events: none;  /* <----------- */
+    opacity: 0.2;
+  }
+
+  .noHover{
+    pointer-events: none;
+}
