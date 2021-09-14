@@ -2,6 +2,8 @@ This application is a sorting visualizer which is used as a tool to help underst
 
 View the project throught through this link: https://aembar.github.io/Sorting_Visualizer
 
+![](Screen%20Shot%202021-09-14%20at%2011.17.03%20AM.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
