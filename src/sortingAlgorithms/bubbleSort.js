@@ -1,24 +1,24 @@
 //Loop through the array, shifting the largest element to the end each time
-export function getBubbleSortAnimations(array) {
-    const animations = [];
-    bubbleSort(array, animations);
-    return animations;
+export function getBubbleSortAnimations(arr) {
+    const animate = [];
+    bubbleSort(arr, animate);
+    return animate;
   }
   
-  function bubbleSort(array, animations) {
-    let end = array.length - 1;
-    while (end >= 1) {
-      for (let j = 0; j < end; j++) {
-        if (array[j] > array[j + 1]) {
-          animations.push([j, j + 1]);
-          animations.push([j, j + 1]);
-          animations.push([j, array[j + 1]]);
-          animations.push([j + 1, array[j]]);
-          let temp = array[j];
-          array[j] = array[j + 1];
-          array[j + 1] = temp;
+  function bubbleSort(arr, animation) {
+    let finish = arr.length - 1;
+    while (finish >= 1) {
+      for (let i = 0; i < finish; i++) {
+        if (arr[i] > arr[i + 1]) {
+          animation.push([i, i + 1]);
+          animation.push([i, i + 1]);
+          animation.push([i, arr[i + 1]]);
+          animation.push([i + 1, arr[i]]);
+          let curr = arr[i];
+          arr[i] = arr[i + 1];
+          arr[i + 1] = curr;
         }
       }
-      end--;
+      finish--;
     }
   }
