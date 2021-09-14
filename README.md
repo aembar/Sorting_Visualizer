@@ -1,4 +1,4 @@
-This application is a sorting visualizer which is used as a tool to help understand how sorting algorithms work. So far I have implemented a Merge Sort. Click the "Generate New Array" button to restart the sorting process. 
+This application is a sorting visualizer which is used as a tool to help understand how sorting algorithms work. So far I have implemented a Merge Sort, Quick Sort, Heap Sort and Bubble Sort. Click the "Generate New Array" button to restart the sorting process. 
 
 View the project throught through this link: https://aembar.github.io/Sorting_Visualizer
 
