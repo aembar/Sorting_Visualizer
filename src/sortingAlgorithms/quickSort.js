@@ -1,58 +1,61 @@
 //Always selecting the first element as pivot
-export function getQuickSortAnimations(array) {
-    const animations = [];
+export function getQuickSortAnimations(arr) {
+    const arguments = [];
     let start = 0;
-    let end = array.length - 1;
-    quickSortFirst(array, start, end, animations);
-    return animations;
+    let final = arr.length - 1;
+    quickSort(arr, start, final, arguments);
+    return arguments;
   }
   
-  function quickSortFirst(array, start, end, animations) {
-    if (start >= end) {
+  function quickSort(array, beg, final, arguments) {
+    if (beg >= final) {
       return;
     }
-    let pivotIdx = partition(array, start, end, animations);
-    quickSortFirst(array, start, pivotIdx - 1, animations);
-    quickSortFirst(array, pivotIdx + 1, end, animations);
+    let pivotIndex = separate(array, arguments, beg, final);
+    quickSort(array, beg, pivotIndex - 1, arguments);
+    quickSort(array, pivotIndex + 1, final, arguments);
   }
   
-  function partition(array, start, end, animations) {
-    let pivotValue = array[start];
-    let lower = start + 1;
+  function separate(array, arguments, beg, final) {
     let run = true;
+    let pivotValue = array[beg];
+    let last = beg + 1;
+    
     while (run) {
-      while (array[lower] <= pivotValue && lower <= end) {
-        animations.push([start, lower]);
-        animations.push([start, lower]);
-        animations.push([0, array[0]]);
-        animations.push([0, array[0]]);
-        lower += 1;
+      while (last <= final && array[last] <= pivotValue) {
+        arguments.push([beg, last]);
+        arguments.push([beg, last]);
+        arguments.push([0, array[0]]);
+        arguments.push([0, array[0]]);
+        last += 1;
       }
-      while (array[end] >= pivotValue && lower <= end) {
-        animations.push([start, end]);
-        animations.push([start, end]);
-        animations.push([0, array[0]]);
-        animations.push([0, array[0]]);
-        end -= 1;
+      while (array[last] >= pivotValue && final <= last) {
+        arguments.push([beg, last]);
+        arguments.push([beg, last]);
+        arguments.push([0, array[0]]);
+        arguments.push([0, array[0]]);
+        last -= 1;
       }
-      if (end < lower) {
+      if (last >= final) {
+        arguments.push([final, last]);
+        arguments.push([final, last]);
+        arguments.push([final, array[last]]);
+        arguments.push([last, array[final]]);
+        let current = array[final];
+        array[final] = array[last];
+        array[last] = current;
+      }
+      else {
         run = false;
-      } else {
-        animations.push([lower, end]);
-        animations.push([lower, end]);
-        animations.push([lower, array[end]]);
-        animations.push([end, array[lower]]);
-        let temp = array[lower];
-        array[lower] = array[end];
-        array[end] = temp;
-      }
+      } 
     }
-    animations.push([start, end]);
-    animations.push([start, end]);
-    animations.push([start, array[end]]);
-    animations.push([end, pivotValue]);
-    let temp = array[end];
-    array[end] = pivotValue;
-    array[start] = temp;
-    return end;
+    arguments.push([beg, last]);
+    arguments.push([beg, last]);
+      
+    arguments.push([beg, array[last]]);
+    arguments.push([last, pivotValue]);
+    let curr = array[last];
+    array[last] = pivotValue;
+    array[beg] = curr;
+    return last;
   }
