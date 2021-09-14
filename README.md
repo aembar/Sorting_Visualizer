@@ -1,3 +1,7 @@
+This application is a sorting visualizer which is used as a tool to help understand how sorting algorithms work. So far I have implemented a Merge Sort. Click the "Generate New Array" button to restart the sorting process. 
+
+View the project throught through this link: https://aembar.github.io/Sorting_Visualizer
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
