@@ -1,62 +1,56 @@
 export function getHeapSortAnimations(array) {
-    const animations = [];
-    heapSort(array, animations);
-    return animations;
+    const arguments = [];
+    heapSort(array, arguments);
+    return arguments;
   }
   
-  function heapSort(arr, animations) {
-    var arrLength = arr.length;
-    for (var i = Math.floor(arrLength / 2); i >= 0; i--) {
-      //builds the max heap by making all parent node bigger than child node
-      //this initialize and turns the array into a max heap for the first time
-      //i is the index of the item that has child node(for odd num) and therefore worth checking
-      //we fills the heap with index from zero to max, from left to right across the levels
-      heapify(arr, i, arrLength, animations);
+  function heaping(arr, index, length, animations) {
+    var max_index = index;
+    var rightIndex = 2 * index + 2;
+    var leftIndex = 2 * index + 1;
+      
+    if (rightIndex < length && arr[rightIndex] > arr[max_index]) {
+      //repeat operations twice 
+      animations.push([rightIndex, max_index]);
+      animations.push([rightIndex, max_index]);
+      animations.push([0, arr[0]]);
+      animations.push([0, arr[0]]);
+      max_index = rightIndex; 
     }
-  
-    for (i = arrLength - 1; i > 0; i--) {
-      //now that we have a max heap, we continually exchanges the root node with the last node
-      //and removes the last node which contains the max value and therefore considered sorted
-      swap(arr, 0, i, animations);
-      //after the swap, the root node may no longer be the biggest value, hence required heapify.
-      //since last node is sorted, reduce the array length by one
-      arrLength--;
-      heapify(arr, 0, arrLength, animations);
+    if (leftIndex < length && arr[leftIndex] > arr[max_index]) {
+      //repeat operations twice 
+      animations.push([leftIndex, max_index]);
+      animations.push([leftIndex, max_index]);
+      animations.push([0, arr[0]]);
+      animations.push([0, arr[0]]);
+      max_index = leftIndex; 
+    }
+    
+    if (max_index !== index) {
+      swaping(arr, index, max_index, animations);
+      heaping(arr, max_index, length, animations); 
     }
   }
+
+function heapSort(array, animation) {
+    var length = array.length;
+    for (var i = Math.floor(length / 2); i >= 0; i--) {
+      heaping(array, i, length, animation);
+    }
   
-  function heapify(arr, idx, arrLength, animations) {
-    var leftIdx = 2 * idx + 1;
-    var rightIdx = 2 * idx + 2;
-    //check if the parent node is bigger than child node
-    var max = idx;
-    if (leftIdx < arrLength && arr[leftIdx] > arr[max]) {
-      animations.push([leftIdx, max]);
-      animations.push([leftIdx, max]);
-      animations.push([0, arr[0]]);
-      animations.push([0, arr[0]]);
-      max = leftIdx; // if left exists and bigger
-    }
-    if (rightIdx < arrLength && arr[rightIdx] > arr[max]) {
-      animations.push([rightIdx, max]);
-      animations.push([rightIdx, max]);
-      animations.push([0, arr[0]]);
-      animations.push([0, arr[0]]);
-      max = rightIdx; // if right exists and bigger
-    }
-    if (max !== idx) {
-      // if needs to change
-      swap(arr, idx, max, animations);
-      heapify(arr, max, arrLength, animations); // recursive to the end for the root node
+    for (i = length - 1; i > 0; i--) {
+      swaping(array, 0, i, animation);
+      length--;
+      heaping(array, 0, length, animation);
     }
   }
   
-  function swap(arr, firstIdx, lastIdx, animations) {
-    animations.push([firstIdx, lastIdx]);
-    animations.push([firstIdx, lastIdx]);
-    animations.push([firstIdx, arr[lastIdx]]);
-    animations.push([lastIdx, arr[firstIdx]]);
-    var temp = arr[firstIdx];
-    arr[firstIdx] = arr[lastIdx];
-    arr[lastIdx] = temp;
+function swaping(arr, firstIndex, lastIndex, animation) {
+    animation.push([firstIndex, lastIndex]);
+    animation.push([firstIndex, lastIndex]);
+    animation.push([firstIndex, arr[lastIndex]]);
+    animation.push([lastIndex, arr[firstIndex]]);
+    var curr = arr[firstIndex];
+    arr[firstIndex] = arr[lastIndex];
+    arr[lastIndex] = curr;
   }
